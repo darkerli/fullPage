@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>fullpage</title>
+	<style type="text/css">
+		body{
+			margin: 0;padding:80px 0;background-color: #ebebeb;text-align: center;
+		}
+		.container img{
+			display: block;
+			margin: 0 auto;
+			max-width: 100%
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+	</div>
+	<script type="text/javascript">
+		(function(){
+			var container = document.querySelector(".container")
+			var imgs = [];
+			for(var i=0; i<10; i++){
+				imgs[i] = `http://darke.applinzi.com//ljeary/fullPage/api/${i+1}.gif`
+			}
+			var len = imgs.length,count=0;
+			//有序预加载
+			loadImg();
+			function loadImg(){
+				var imgObj = new Image();
+				imgObj.onload = function(){
+					if(count>=len){
+						//console.log(`完成`)
+					}else{
+						loadImg()
+					}
+				};
+				imgObj.src = imgs[count++];
+				container.appendChild(imgObj)
+			}
+		})()
+	</script>
+</body>
+</html>
